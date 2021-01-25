@@ -8,6 +8,6 @@ export type ProductsState = {
     products: {
         loading: boolean;
         error: Error | null;
-        data: ProductModel[] | null;
+        data: { products: ProductModel[]; total: number } | null;
     };
 };

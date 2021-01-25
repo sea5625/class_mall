@@ -10,4 +10,4 @@ export const getProductsAsync = createAsyncAction(
     GET_PRODUCTS_REQUEST,
     GET_PRODUCTS_SUCCESS,
     GET_PRODUCTS_FAILURE
-)<null, ProductModel[], AxiosError>();
+)<number, { products: ProductModel[]; total: number }, AxiosError>();

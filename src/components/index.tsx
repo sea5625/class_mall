@@ -5,4 +5,7 @@ import ProductCard from "./products/ProductCard";
 // * Cart Component
 import CartList from "./cart/CartList";
 
-export { ProductCardList, ProductCard, CartList };
+// * Common Component
+import Pagination from "./common/Pagination";
+
+export { ProductCardList, ProductCard, CartList, Pagination };
