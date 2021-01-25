@@ -4,15 +4,15 @@ import { RootState } from "../modules";
 import { getCouponsAsync } from "../modules/coupons";
 
 const CartContainer = () => {
-    const { data, loading } = useSelector(
+    const { data, loading, error } = useSelector(
         (state: RootState) => state.coupons.coupons
     );
     const dispatch = useDispatch();
+    console.log(data, loading, error, "state");
 
     useEffect(() => {
         dispatch(getCouponsAsync.request(null));
     }, []);
-
     return <div>CartContainer</div>;
 };
 
