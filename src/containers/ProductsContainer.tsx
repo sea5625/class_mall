@@ -5,7 +5,7 @@ import { RootState } from "../modules";
 import { getProductsAsync } from "../modules/products";
 import { Section, Spinner, Button, Grid, Row, Col } from "@class101/ui";
 
-const ProductsContainer = () => {
+const ProductsContainer = props => {
     const dispatch = useDispatch();
 
     const { data, loading } = useSelector(
@@ -27,11 +27,19 @@ const ProductsContainer = () => {
                     <Col lg={10}>
                         <Section
                             title="상품 목록 페이지"
+                            titleStyle={{
+                                typography: "Headline3"
+                            }}
                             description="장바구니에 원하는 클래스를 담아보세요"
                         ></Section>
                     </Col>
                     <Col lg={2}>
-                        <Button size={"md"} color={"orange"} to={"/cart"}>
+                        <Button
+                            size={"md"}
+                            color={"orange"}
+                            disabled={cartItems.length === 0}
+                            onClick={() => props.history.push("/cart")}
+                        >
                             장바구니 이동 ({cartItems.length}) 건
                         </Button>
                     </Col>
