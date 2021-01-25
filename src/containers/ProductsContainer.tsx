@@ -1,20 +1,57 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Pagination, ProductCardList } from "../components";
 import { RootState } from "../modules";
 import { getProductsAsync } from "../modules/products";
+import { Section, Spinner, Button, Grid, Row, Col } from "@class101/ui";
 
 const ProductsContainer = () => {
-    const { data, loading, error } = useSelector(
+    const dispatch = useDispatch();
+
+    const { data, loading } = useSelector(
         (state: RootState) => state.products.products
     );
-    const dispatch = useDispatch();
-    console.log(data, loading, error, "???");
+
+    const { cartItems } = useSelector((state: RootState) => state.cart.cart);
+
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
-        dispatch(getProductsAsync.request(null));
-    }, []);
+        dispatch(getProductsAsync.request(page));
+    }, [page]);
 
-    return <div>ProductsContainer</div>;
+    return (
+        <div style={{ padding: "2.5rem 0" }}>
+            <Grid>
+                <Row>
+                    <Col lg={10}>
+                        <Section
+                            title="상품 목록 페이지"
+                            description="장바구니에 원하는 클래스를 담아보세요"
+                        ></Section>
+                    </Col>
+                    <Col lg={2}>
+                        <Button size={"md"} color={"orange"} to={"/cart"}>
+                            장바구니 이동 ({cartItems.length}) 건
+                        </Button>
+                    </Col>
+                </Row>
+                {loading && <Spinner size={50} />}
+                {data && <ProductCardList products={data.products} />}
+                <Row>
+                    <Col lg={12}>
+                        <Pagination
+                            page={page}
+                            setPage={_page => {
+                                setPage(_page);
+                            }}
+                            total={data?.total}
+                        />
+                    </Col>
+                </Row>
+            </Grid>
+        </div>
+    );
 };
 
 export default ProductsContainer;
