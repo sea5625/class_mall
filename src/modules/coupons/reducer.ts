@@ -14,7 +14,7 @@ const initialState: CouponsState = {
     }
 };
 
-const coupons = createReducer<CouponsState, CouponsAction>(initialState, {
+const products = createReducer<CouponsState, CouponsAction>(initialState, {
     [GET_COUPONS_REQUEST]: state => ({
         ...state,
         coupons: {
@@ -41,4 +41,4 @@ const coupons = createReducer<CouponsState, CouponsAction>(initialState, {
     })
 });
 
-export default coupons;
+export default products;
