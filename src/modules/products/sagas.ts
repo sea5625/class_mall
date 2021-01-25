@@ -2,14 +2,10 @@ import { getProductsAsync, GET_PRODUCTS_REQUEST } from "./actions";
 import { getProducts, ProductModel } from "../../apis/products";
 import { call, put, takeEvery } from "redux-saga/effects";
 
-function* getProductsSaga(action) {
+function* getProductsSaga() {
     try {
-        const response: {
-            products: ProductModel[];
-            total: number;
-        } = yield call(getProducts, action.payload);
-
-        yield put(getProductsAsync.success(response));
+        const products: ProductModel[] = yield call(getProducts);
+        yield put(getProductsAsync.success(products));
     } catch (e) {
         yield put(getProductsAsync.failure(e));
     }

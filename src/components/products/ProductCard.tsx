@@ -1,11 +1,4 @@
-import { Card, Caption1, Button, Colors, Col } from "@class101/ui";
-import { numberWithCommas } from "../../utills/utills";
-import { useDispatch, useSelector } from "react-redux";
-import {
-    fetchAddCartItem,
-    fetchRemoveCartItem
-} from "../../modules/cart/actions";
-import { RootState } from "../../modules";
+import React from "react";
 
 type Props = {
     id: string;
@@ -86,6 +79,7 @@ const ProductCard = ({
             <br />
         </Col>
     );
+
 };
 
 export default ProductCard;

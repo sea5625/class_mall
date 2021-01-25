@@ -8,18 +8,16 @@ import { couponsSaga } from "./coupons";
 //* Reducer
 import products from "./products/reducer";
 import coupons from "./coupons/reducer";
-import cart from "./cart/reducer";
 
 //* Root reducer
 const rootReducer = combineReducers({
     products,
-    coupons,
-    cart
+    coupons
 });
 
 export default rootReducer;
 
-//* Root state = currentState(state.products, state.coupons, state.cart)
+//* Root state = currentState(state.products, state.coupons)
 export type RootState = ReturnType<typeof rootReducer>;
 
 //* Root saga
