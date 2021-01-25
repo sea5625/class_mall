@@ -26,7 +26,7 @@ const ProductCard = ({
     const { cartItems } = useSelector((state: RootState) => state.cart.cart);
     const inCarted = cartItems.includes(id);
 
-    const handleSelectClick = (id: string) => {
+    const handleFetchCart = (id: string) => {
         if (!inCarted) {
             if (cartItems.length < 3) {
                 alert("장바구니에 해당 상품을 추가하였습니다.");
@@ -68,7 +68,7 @@ const ProductCard = ({
                 {inCarted ? (
                     <Button
                         color={"blue"}
-                        onClick={() => handleSelectClick(id)}
+                        onClick={() => handleFetchCart(id)}
                         size={"xs"}
                     >
                         장바구니 뺴기
@@ -76,7 +76,7 @@ const ProductCard = ({
                 ) : (
                     <Button
                         color={"blueLight"}
-                        onClick={() => handleSelectClick(id)}
+                        onClick={() => handleFetchCart(id)}
                         size={"xs"}
                     >
                         장바구니 담기
